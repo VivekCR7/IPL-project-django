@@ -1,0 +1,29 @@
+{% extends 'IPL/base.html' %} {% block output %}
+<script>
+  let values = {{ values }}
+  Highcharts.chart("problem", {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: "Matches played per year",
+    },
+    xAxis: {
+      type: "category",
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "no. of Matches",
+      },
+    },
+    series: [
+      {
+        name: "Years",
+        data: values,
+      },
+    ],
+  });
+</script>
+
+{% endblock output %}

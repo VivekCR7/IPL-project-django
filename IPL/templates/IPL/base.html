@@ -1,0 +1,30 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Django</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <header class="border">
+      <p>IPL</p>
+    </header>
+
+    <div class="navigation">
+      <a href="{% url 'problem1' %}"> <p>MatchesPlayedPerYear</p></a>
+      <a href="{% url 'problem1' %}"> <p>MatchesWon</p></a>
+      <a href="{% url 'problem1' %}"> <p>ExtraRun</p></a>
+      <a href="{% url 'problem1' %}"> <p>Top10Bowler</p></a>
+    </div>
+
+    <section>
+      <div id="problem" class="container"></div>
+      {% block output %}{% endblock output %}
+    </section>
+  </body>
+</html>
