@@ -16,15 +16,12 @@
     </header>
 
     <div class="navigation">
-      <a href="{% url 'problem1' %}"> <p>MatchesPlayedPerYear</p></a>
-      <a href="{% url 'problem1' %}"> <p>MatchesWon</p></a>
-      <a href="{% url 'problem1' %}"> <p>ExtraRun</p></a>
-      <a href="{% url 'problem1' %}"> <p>Top10Bowler</p></a>
+      <a href="{% url 'problem1-output' %}"> <p>MatchesPlayedPerYear</p></a>
+      <a href="{% url 'problem2-output' %}"> <p>MatchesWon</p></a>
+      <a href="{% url 'problem3-output' %}"> <p>ExtraRun</p></a>
+      <a href="{% url 'problem4-output' %}"> <p>Top10Bowler</p></a>
     </div>
 
-    <section>
-      <div id="problem" class="container"></div>
-      {% block output %}{% endblock output %}
-    </section>
+    <section>{% block output %}{% endblock output %}</section>
   </body>
 </html>

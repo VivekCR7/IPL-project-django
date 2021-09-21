@@ -1,0 +1,129 @@
+{% extends 'IPL/base.html' %} {% block output %}
+<div id="problem2" class="container"></div>
+<script>
+  const mumbai = [],
+    banglore = [],
+    kolkata = [],
+    delhi = [],
+    rajasthan = [],
+    chennai = [],
+    punjab = [],
+    deccan = [],
+    pune1 = [],
+    kerala = [],
+    hyderabad = [],
+    pune2 = [];
+
+  var compare_index = 1;
+  for (let year of {{ result }}) {
+        //iterate and add one element if present
+      if (year["winner"] == "Mumbai Indians") {
+        mumbai.push(year["winner__count"]);
+      } else if (year["winner"] == "Kolkata Knight Riders") {
+        kolkata.push(year["winner__count"]);
+      } else if (year["winner"] == "Chennai Super Kings") {
+        chennai.push(year["winner__count"]);
+      } else if (year["winner"] == "Delhi Daredevils") {
+        delhi.push(year["winner__count"]);
+      } else if (
+        year["winner"] == "Royal Challengers Bangalore"
+      ) {
+        banglore.push(year["winner__count"]);
+      } else if (year["winner"] == "Rajasthan Royals") {
+        rajasthan.push(year["winner__count"]);
+      } else if (year["winner"] == "Kings XI Punjab") {
+        punjab.push(year["winner__count"]);
+      } else if (year["winner"] == "Deccan Chargers") {
+        deccan.push(year["winner__count"]);
+      } else if (year["winner"] == "Pune Warriors") {
+        pune1.push(year["winner__count"]);
+      } else if (year["winner"] == "Sunrisers Hyderabad") {
+        hyderabad.push(year["winner__count"]);
+      } else if (year["winner"] == "Kochi Tuskers Kerala") {
+        kerala.push(year["winner__count"]);
+      } else if (
+        year["winner"] == "Rising Pune Supergiants"
+      ) {
+        pune2.push(year["winner__count"]);
+      }
+    }
+
+    // update the -1 in cell
+
+  Highcharts.chart("problem2", {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: "Matches won per team per year",
+    },
+    xAxis: {
+      categories: {{ years }},
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "No. of matches",
+      },
+    },
+
+    plotOptions: {
+      column: {
+        stacking: "normal",
+      },
+    },
+
+    series: [
+      {
+        name: "Mumbai Indians",
+        data: mumbai,
+      },
+      {
+        name: "Royal Challengers Bangalore",
+        data: banglore,
+      },
+      {
+        name: "Kolkata Knight Riders",
+        data: kolkata,
+      },
+      {
+        name: "Chennai Super Kings",
+        data: chennai,
+      },
+      {
+        name: "Delhi Daredevils",
+        data: delhi,
+      },
+      {
+        name: "Rajasthan Royals",
+        data: rajasthan,
+      },
+      {
+        name: "Kings XI Punjab",
+        data: punjab,
+      },
+      {
+        name: "Deccan Chargers",
+        data: deccan,
+      },
+      {
+        name: "Pune Warriors",
+        data: pune1,
+      },
+      {
+        name: "Sunrisers Hyderabad",
+        data: hyderabad,
+      },
+      {
+        name: "Kochi Tuskers Kerala",
+        data: kerala,
+      },
+      {
+        name: "Rising Pune Supergiants",
+        data: pune2,
+      },
+    ],
+  });
+</script>
+
+{% endblock output %}

@@ -1,0 +1,43 @@
+{% extends 'IPL/base.html' %} {% block output %}
+<div id="problem3" class="container"></div>
+<script>
+  function plot_extra_run() {
+    fetch("{% url 'problem3' %}")
+      .then((data) => data.json())
+      .then(problem3);
+  }
+
+  plot_extra_run();
+
+  function problem3(data) {
+    const arr = [];
+    for (let team of data["data"]) {
+      arr.push([team["batting_team"], team["extra_runs__sum"]]);
+    }
+
+    Highcharts.chart("problem3", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Extra run conceded per team in 2016",
+      },
+      xAxis: {
+        type: "category",
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Extra Runs",
+        },
+      },
+      series: [
+        {
+          name: "Teams",
+          data: arr,
+        },
+      ],
+    });
+  }
+</script>
+{% endblock output %}

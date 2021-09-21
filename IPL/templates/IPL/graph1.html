@@ -1,29 +1,44 @@
 {% extends 'IPL/base.html' %} {% block output %}
+<div id="problem1" class="container"></div>
 <script>
-  let values = {{ values }}
-  Highcharts.chart("problem", {
-    chart: {
-      type: "column",
-    },
-    title: {
-      text: "Matches played per year",
-    },
-    xAxis: {
-      type: "category",
-    },
-    yAxis: {
-      min: 0,
+  function plot_matches_played_per_year() {
+    fetch("{% url 'problem1' %}")
+      .then((data) => data.json())
+      .then(problem1);
+  }
+
+  plot_matches_played_per_year();
+
+  function problem1(data) {
+    const arr = [];
+    for (ele of data["data"]) {
+      arr.push([ele["season"], ele["season__count"]]);
+    }
+
+    Highcharts.chart("problem1", {
+      chart: {
+        type: "column",
+      },
       title: {
-        text: "no. of Matches",
+        text: "Matches played per year",
       },
-    },
-    series: [
-      {
-        name: "Years",
-        data: values,
+      xAxis: {
+        type: "category",
       },
-    ],
-  });
+      yAxis: {
+        min: 0,
+        title: {
+          text: "no. of Matches",
+        },
+      },
+      series: [
+        {
+          name: "Years",
+          data: arr,
+        },
+      ],
+    });
+  }
 </script>
 
 {% endblock output %}

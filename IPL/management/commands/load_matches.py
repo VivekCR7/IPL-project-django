@@ -25,7 +25,7 @@ class Command(BaseCommand):
                                     result=row['result'], dl_applied=row['dl_applied'], winner=row['winner'],
                                     win_by_runs=row['win_by_runs'],
                                     win_by_wickets=row['win_by_wickets'],
-                                    player_of_match=['player_of_match'],
+                                    player_of_match=row['player_of_match'],
                                     venue=row['venue'], umpire1=row['umpire1'],
                                     umpire2=row['umpire2'], umpire3=row['umpire3'])
                             )

@@ -1,0 +1,47 @@
+{% extends 'IPL/base.html' %} {% block output %}
+<div id="problem4" class="container"></div>
+<script>
+  function plot_economic_bowler() {
+    fetch("{% url 'problem4' %}")
+      .then((data) => data.json())
+      .then(problem4);
+  }
+
+  plot_economic_bowler();
+
+  function problem4(data) {
+    const arr = [];
+    for (ele of data["data"]) {
+      arr.push([ele["bowler"], ele["eco"]]);
+    }
+
+    console.log(arr);
+    Highcharts.chart("problem4", {
+      chart: {
+        type: "column",
+      },
+      title: {
+        text: "Top 10 economic bowler",
+      },
+      xAxis: {
+        type: "category",
+        labels: {
+          rotation: -90,
+        },
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: "Economic rating = (total_runs/over)",
+        },
+      },
+      series: [
+        {
+          name: "Bowlers",
+          data: arr,
+        },
+      ],
+    });
+  }
+</script>
+{% endblock output %}
