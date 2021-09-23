@@ -34,7 +34,7 @@ def problem2_graph(request):
 
 def problem3(request):
     result = list(deliveries.objects.filter(match_id__season=2016).values(
-        'batting_team').annotate(Sum('extra_runs')).order_by('extra_runs__sum'))
+        'bowling_team').annotate(Sum('extra_runs')).order_by('extra_runs__sum'))
 
     return JsonResponse({'data': result}, json_dumps_params={'indent': 2})
 

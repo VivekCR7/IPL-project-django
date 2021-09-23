@@ -12,7 +12,7 @@
   function problem3(data) {
     const arr = [];
     for (let team of data["data"]) {
-      arr.push([team["batting_team"], team["extra_runs__sum"]]);
+      arr.push([team["bowling_team"], team["extra_runs__sum"]]);
     }
 
     Highcharts.chart("problem3", {
